@@ -4,16 +4,15 @@ pipeline {
             label 'maven'
         }
     }
-environment {
-    PATH = "/opt/apche-maven-3.9.6/bin:$PATH"
-}
+    
     stages {
-        stage("build"){
+        stage('Clone-code') {
             steps {
-                sh 'mvn clean deploy'
+                git branch: 'main', url: 'https://github.com/Vani1B/tweet-trend-new.git'
             }
         }
-
+    }
+    
     stage('SonarQube analysis') {
     environment {
         scannerHome = tool 'vani-sonar-scanner'
