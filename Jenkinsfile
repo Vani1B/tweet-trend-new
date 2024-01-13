@@ -20,7 +20,8 @@ pipeline {
               echo "-------- unit test started ---------"
               sh 'mvn surefire-report:report'
               echo "-------- build completed --------"
-
+          }
+        }
         
         stage('SonarQube analysis') {
              environment {
@@ -31,8 +32,11 @@ pipeline {
            sh "${scannerHome}/bin/sonar-scanner"
          }
        }
+        
    }
 }
 }
+
+
 
 
